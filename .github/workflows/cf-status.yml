@@ -1,0 +1,26 @@
+name: Codeforces Status
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  post-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Post Codeforces status
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          CF_HANDLES: ${{ vars.CF_HANDLES }}
+          CF_ONLINE_THRESHOLD_SECONDS: ${{ vars.CF_ONLINE_THRESHOLD_SECONDS }}
+        run: |
+          python3 scripts/cf_status.py
