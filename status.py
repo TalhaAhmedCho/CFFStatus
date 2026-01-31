@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Iterable, List
 
 
-CONFIG_PATH = Path(__file__).resolve().parents[1] / "config" / "users.json"
+CONFIG_PATH = "users.json"
 API_ENDPOINT = "https://codeforces.com/api/user.info"
 DEFAULT_ONLINE_THRESHOLD_SECONDS = 300
 
@@ -37,9 +37,9 @@ def load_handles() -> List[str]:
     if env_handles:
         return [handle.strip() for handle in env_handles.split(",") if handle.strip()]
 
-    if CONFIG_PATH.exists():
+    if Path(CONFIG_PATH).exists():
         try:
-            data = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+            data = json.loads(Path(CONFIG_PATH).read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
             raise ConfigError(f"Invalid JSON in {CONFIG_PATH}: {exc}") from exc
         handles = data.get("handles")
@@ -52,7 +52,7 @@ def load_handles() -> List[str]:
         )
 
     raise ConfigError(
-        "No handles configured. Set CF_HANDLES or create config/users.json."
+        "No handles configured. Set CF_HANDLES or create users.json."
     )
 
 
