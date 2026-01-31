@@ -143,7 +143,3 @@ def main() -> int:
     post_to_discord(webhook_url, message)
     print("Posted status update for:", ", ".join(handles))
     return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
