@@ -128,9 +128,9 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 1
 
-    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
+    webhook_url = os.getenv("DISCORD_WEBHOOK")
     if not webhook_url:
-        print("DISCORD_WEBHOOK_URL is not set.", file=sys.stderr)
+        print("DISCORD_WEBHOOK is not set.", file=sys.stderr)
         return 1
 
     threshold = int(
