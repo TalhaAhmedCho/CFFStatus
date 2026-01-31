@@ -1,8 +1,6 @@
 name: Codeforces Status
 
 on:
-  schedule:
-    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -19,7 +17,7 @@ jobs:
 
       - name: Post Codeforces status
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           CF_HANDLES: ${{ vars.CF_HANDLES }}
           CF_ONLINE_THRESHOLD_SECONDS: ${{ vars.CF_ONLINE_THRESHOLD_SECONDS }}
         run: |
