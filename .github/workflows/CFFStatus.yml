@@ -1,10 +1,10 @@
-name: Codeforces Status
+name: Codeforces Friends Status
 
 on:
   workflow_dispatch:
 
 jobs:
-  post-status:
+  CFFStatus:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Post Codeforces status
+      - name: Post Codeforces Friends status
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           CF_HANDLES: ${{ vars.CF_HANDLES }}
