@@ -128,9 +128,9 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 1
 
-    webhook_url = os.getenv("DISCORD_WEBHOOK")
+    webhook_url = os.getenv("DISCORD_WEBHOOK") or os.getenv("DISCORD_WEBHOOK_URL")
     if not webhook_url:
-        print("DISCORD_WEBHOOK is not set.", file=sys.stderr)
+        print("DISCORD_WEBHOOK (or DISCORD_WEBHOOK_URL) is not set.", file=sys.stderr)
         return 1
 
     threshold = int(
@@ -143,3 +143,7 @@ def main() -> int:
     post_to_discord(webhook_url, message)
     print("Posted status update for:", ", ".join(handles))
     return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
