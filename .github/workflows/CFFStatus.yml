@@ -21,4 +21,4 @@ jobs:
           CF_HANDLES: ${{ vars.CF_HANDLES }}
           CF_ONLINE_THRESHOLD_SECONDS: ${{ vars.CF_ONLINE_THRESHOLD_SECONDS }}
         run: |
-          python3 scripts/cf_status.py
+          python3 status.py
